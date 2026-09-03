@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+*.log
+logs/
+security/private_key.pem
+security/public_key.pem
+.DS_Store
+
+# Uploaded files (stored on disk under uploads/YYYY/MM/)
+uploads/

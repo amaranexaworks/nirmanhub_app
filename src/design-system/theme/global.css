@@ -1,0 +1,335 @@
+/** Global app styles + design-system utility helpers. */
+
+body,
+ion-app {
+  font-family: var(--ion-font-family);
+  color: var(--anrix-text-strong);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Flat, calm canvas — cards and the brand header carry the contrast */
+  background: var(--anrix-app-bg);
+}
+
+/* Section header used across dashboards */
+.anrix-section-title {
+  font-size: 21px;
+  line-height: 28px;
+  font-weight: 600;
+  color: var(--anrix-text-strong);
+  margin: var(--anrix-space-6) var(--anrix-space-5) var(--anrix-space-3);
+}
+
+.anrix-muted {
+  color: var(--anrix-text-muted);
+}
+
+/* Hide the native scrollbar on horizontal pill/chip rows */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* THE single card surface — solid white, hairline border, gentle lift.
+   One definition so every card across the app reads identically. */
+.anrix-card {
+  background: var(--anrix-surface);
+  border: 1px solid var(--anrix-border-strong);
+  border-radius: var(--anrix-radius-lg);
+  box-shadow: var(--anrix-shadow-2);
+  padding: var(--anrix-space-4);
+}
+
+/* Canvas behind scrolling content — a gentle top-to-bottom gradient (lighter at
+   the top under the header, settling to the deeper neutral) gives quiet depth so
+   the white cards read as elevated tiles rather than blending into a flat sheet. */
+ion-content {
+  --background: linear-gradient(180deg, var(--anrix-app-bg-2) 0%, var(--anrix-app-bg) 32%);
+}
+
+/* Lists & items are solid surfaces (no blur) */
+ion-list {
+  background: transparent;
+  padding: 0;
+}
+ion-item {
+  --background: var(--anrix-surface);
+  --border-color: var(--anrix-border);
+  --inner-padding-end: var(--anrix-space-4);
+  --padding-start: var(--anrix-space-4);
+}
+/* Inset list = one clean card with hairline-divided rows (Zepto/NoBroker list style).
+   Uses the same framed border + lift as .anrix-card so list-cards read identically. */
+ion-list.list-inset {
+  border-radius: var(--anrix-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--anrix-border-strong);
+  background: var(--anrix-surface);
+  box-shadow: var(--anrix-shadow-2);
+}
+
+/* Continuously scrolling announcement strip (Nobero/Zepto promo bar) */
+.anrix-marquee {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  background: rgba(189, 150, 47, 0.12);
+  color: var(--anrix-text-strong);
+  border-bottom: 1px solid rgba(189, 150, 47, 0.28);
+}
+.anrix-marquee__track {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 100%;
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  animation: anrix-marquee-scroll 22s linear infinite;
+}
+.anrix-marquee:hover .anrix-marquee__track {
+  animation-play-state: paused;
+}
+@keyframes anrix-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+/* Bottom-sheet slide-up (packet picker etc.) */
+@keyframes anrixSheetUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Carousel dot indicators */
+.anrix-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: var(--anrix-space-4);
+}
+.anrix-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--anrix-border-strong);
+  transition: width var(--anrix-motion-base) var(--anrix-ease-standard),
+    background var(--anrix-motion-base) var(--anrix-ease-standard);
+}
+.anrix-dot.is-active {
+  width: 22px;
+  background: var(--anrix-primary);
+}
+
+/* Pressed micro-interaction (respect reduced motion) */
+.anrix-pressable {
+  transition: transform var(--anrix-motion-fast) var(--anrix-ease-standard);
+}
+.anrix-pressable:active {
+  transform: scale(0.98);
+}
+
+/* Force Ionic controls onto the brand accent — no stray default blue anywhere */
+ion-toggle {
+  --background: var(--anrix-surface-2);
+  --background-checked: var(--anrix-primary);
+  --handle-background: #ffffff;
+  --handle-background-checked: #ffffff;
+}
+/* Search is rendered by the custom pill <SearchField> (components/search),
+   not IonSearchbar — its shadow DOM ignored our --border-radius override. */
+ion-checkbox {
+  --checkbox-background-checked: var(--anrix-primary);
+  --border-color-checked: var(--anrix-primary);
+}
+ion-progress-bar {
+  --progress-background: var(--anrix-primary);
+}
+ion-spinner {
+  color: var(--anrix-primary);
+}
+/* Modern buttons — compact, rounded, soft brand shadow (kills the old all-caps blocky look) */
+ion-button {
+  --border-radius: 12px;
+  --box-shadow: 0 4px 12px rgba(22, 24, 29, 0.22);
+  --padding-top: 11px;
+  --padding-bottom: 11px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 700;
+  font-size: 14px;
+  --ripple-color: rgba(255, 255, 255, 0.3);
+}
+/* Default text buttons stay compact (icon-only header buttons keep their own size). */
+ion-button:not([fill='clear']):not([fill='outline']) {
+  min-height: 42px;
+}
+ion-button[fill='outline'] {
+  --border-width: 1.5px;
+  --box-shadow: none;
+  --background: transparent;
+  --color: var(--anrix-primary);
+}
+ion-button[fill='clear'] {
+  --box-shadow: none;
+}
+ion-button[size='small'] {
+  --border-radius: 11px;
+  --box-shadow: 0 4px 12px rgba(22, 24, 29, 0.22);
+  font-size: 13.5px;
+}
+/* Full-width flat bottom nav (LinkedIn style) — edge-to-edge, attached to the bottom */
+ion-tab-bar {
+  --border: none;
+  margin: 0;
+  border-radius: 0;
+  height: calc(58px + env(safe-area-inset-bottom));
+  padding: 4px 0 env(safe-area-inset-bottom);
+  background: var(--anrix-surface);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: none;
+  border-top: 1px solid var(--anrix-border);
+  box-shadow: 0 -2px 12px rgba(22, 24, 29, 0.06);
+}
+
+/* Branded header — solid teal gradient so it clearly stands apart from the content. */
+ion-header {
+  background: transparent;
+}
+ion-header::after {
+  display: none; /* remove the solid header divider line */
+}
+ion-toolbar {
+  --background: var(--anrix-surface);
+  --color: var(--anrix-text-strong);
+  --border-width: 0;
+  --border-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+/* Clean white header — title in ink, actions in ink, brand accents in gold. */
+ion-toolbar ion-title {
+  color: var(--anrix-text-strong);
+  font-weight: 800;
+}
+ion-toolbar ion-button,
+ion-toolbar ion-back-button,
+ion-toolbar ion-menu-button {
+  --color: var(--anrix-text-strong);
+  --color-activated: var(--anrix-text-muted);
+  --icon-color: var(--anrix-text-strong);
+  color: var(--anrix-text-strong);
+}
+ion-toolbar ion-icon {
+  color: var(--anrix-text-strong);
+}
+/* Subtle shadow + hairline lift the white header above the scrolling content. */
+ion-header {
+  box-shadow: 0 1px 0 var(--anrix-border), 0 4px 14px rgba(20, 23, 28, 0.06);
+}
+ion-tab-button {
+  --background: transparent;
+  --background-focused: transparent;
+  --color: var(--anrix-text-muted);
+  --color-selected: var(--anrix-primary);
+  --ripple-color: var(--anrix-primary);
+  position: relative;
+}
+/* Active tab — short brand indicator bar at the top, bold colour (LinkedIn style) */
+ion-tab-button.tab-selected::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--anrix-primary);
+}
+ion-tab-button.tab-selected ion-label {
+  font-weight: 700;
+}
+/* Keep 5 tab labels on one line, never clipped at screen edges */
+ion-tab-button ion-label {
+  font-size: 11px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  margin-top: 2px;
+}
+::selection {
+  background: var(--anrix-primary-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ── Responsive frame ─────────────────────────────────────────────────────────
+   The UI is phone-first, but it ADAPTS to the device instead of locking to one
+   phone-width column. The app is always a centered frame on a soft neutral
+   backdrop; the frame's max width grows by breakpoint so it genuinely uses the
+   screen it's opened on:
+     • phone   (<700px)   → full width, edge to edge
+     • tablet  (≥700px)   → centered ~720px column
+     • laptop  (≥1024px)  → centered ~980px web frame
+     • desktop (≥1440px)  → centered ~1160px web frame
+   Content grids (see .anrix-grid-products) add columns as the frame widens, so
+   the extra space is filled with more cards — never stretched ones.
+   The transform on ion-app also scopes any position:fixed overlays (auth
+   backdrop, modals) to the frame instead of the full viewport. */
+@media (min-width: 700px) {
+  body {
+    background: #e4e6eb;
+  }
+  ion-app {
+    left: 50% !important;
+    right: auto !important;
+    width: min(720px, 100%);
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 1px rgba(20, 23, 28, 0.06), 0 24px 70px rgba(20, 23, 28, 0.16);
+  }
+}
+@media (min-width: 1024px) {
+  ion-app {
+    width: min(980px, 100%);
+  }
+}
+@media (min-width: 1440px) {
+  ion-app {
+    width: min(1160px, 100%);
+  }
+}
+
+/* Responsive product/card grid — 2 columns on phones, more as the frame widens,
+   so wide screens get MORE cards rather than stretched ones. Used by the
+   marketplace order grid and the vendor catalog grid. */
+.anrix-grid-products {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 700px) {
+  .anrix-grid-products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .anrix-grid-products {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 1440px) {
+  .anrix-grid-products {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

@@ -1,0 +1,221 @@
+/**
+ * Nirmaan design tokens — professional, restrained system.
+ * ONE brand accent (safety orange) used sparingly for primary actions & active
+ * states. Everything else is a neutral charcoal/gray ramp. Status colors
+ * (success/warning/danger) appear only on status — never decoratively.
+ * Light is default; `.dark` swaps to a charcoal ramp. See docs/07-design-system.md.
+ */
+
+:root {
+  /* Brand accent — soft amber on white. Warm, premium; used for actions & active states.
+     Amber is bright, so text/icons sitting ON it must use --anrix-on-primary (charcoal),
+     never white. Big hero surfaces stay charcoal (--anrix-ink) + white text. */
+  --anrix-primary: #f5b301;
+  --anrix-primary-strong: #9a6a06;
+  --anrix-primary-soft: rgba(245, 179, 1, 0.16);
+  --anrix-accent: #ffcb3d;
+  /* Legible text/icon color for anything painted on an amber fill. */
+  --anrix-on-primary: #1a1a1a;
+
+  /* Warm near-black "ink" surface for premium hero cards (balance, profile) — pairs with amber. */
+  --anrix-ink: #1a1a1a;
+  --anrix-on-ink: #ffffff;
+
+  /* Status — used only to signal state */
+  --anrix-success: #1f9d6b;
+  --anrix-warning: #d99413;
+  --anrix-danger: #e1483d;
+  --anrix-info: #5b6472; /* neutral slate (no decorative blue) */
+
+  /* Neutral surfaces & text */
+  --anrix-bg: #f2f3f6;
+  --anrix-surface: #ffffff;
+  --anrix-surface-2: #eef0f3;
+  /* Borders are intentionally defined so white cards read as distinct, framed tiles
+     on the light-grey canvas (not floating). Kept soft enough to stay premium. */
+  --anrix-border: #dcdfe5;
+  --anrix-border-strong: #c9ced6;
+  --anrix-text-strong: #15171c;
+  --anrix-text: #515761;
+  --anrix-text-muted: #8a8f99;
+
+  /* Radius */
+  --anrix-radius-sm: 8px;
+  --anrix-radius-md: 12px;
+  --anrix-radius-lg: 16px;
+  --anrix-radius-xl: 22px;
+  --anrix-radius-pill: 999px;
+
+  /* Spacing (4pt) */
+  --anrix-space-1: 2px;
+  --anrix-space-2: 4px;
+  --anrix-space-3: 8px;
+  --anrix-space-4: 12px;
+  --anrix-space-5: 16px;
+  --anrix-space-6: 20px;
+  --anrix-space-7: 24px;
+  --anrix-space-8: 32px;
+  --anrix-space-9: 40px;
+  --anrix-space-10: 48px;
+
+  /* Elevation — soft, single-direction. Crisp & subtle (Zepto/NoBroker style):
+     a hairline border carries the edge, the shadow only adds a gentle lift. */
+  --anrix-shadow-1: 0 1px 3px rgba(20, 23, 28, 0.06);
+  --anrix-shadow-2: 0 2px 10px rgba(20, 23, 28, 0.08);
+  --anrix-shadow-3: 0 12px 28px rgba(20, 23, 28, 0.13);
+
+  /* Motion */
+  --anrix-motion-fast: 150ms;
+  --anrix-motion-base: 220ms;
+  --anrix-motion-slow: 320ms;
+  --anrix-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --anrix-touch-min: 48px;
+
+  /* Premium hero surface — charcoal, so hardcoded white text on hero cards/CTAs
+     stays legible. Amber lives on top as the accent, never as the fill here. */
+  --anrix-gradient-brand: linear-gradient(155deg, #2c2c31 0%, #17161a 100%);
+  /* Header bar — warm near-black; white text stays legible */
+  --anrix-header-bg: #1a1a1a;
+  --anrix-header-gradient: #1a1a1a;
+  /* Subtle amber glow used over the auth backdrop */
+  --anrix-ink-glow: radial-gradient(60% 45% at 50% 0%, rgba(245, 179, 1, 0.20) 0%, transparent 72%);
+
+  /* Frosted glass — retained ONLY for auth overlays sitting on the charcoal backdrop */
+  --anrix-glass-bg: rgba(255, 255, 255, 0.08);
+  --anrix-glass-border: rgba(255, 255, 255, 0.16);
+  --anrix-glass-blur: 16px;
+  --anrix-ring-primary: 0 0 0 4px rgba(245, 179, 1, 0.30);
+
+  /* Content surfaces are SOLID now (no blur, no translucency) — this is what
+     stops the "mixing" of frosted + flat cards on the same screen. */
+  --anrix-surface-glass: var(--anrix-surface);
+  --anrix-border-glass: var(--anrix-border);
+  --anrix-nav-bg: var(--anrix-surface);
+  --anrix-nav-border: var(--anrix-border);
+  /* App canvas — a deeper, subtly warm neutral (NOT near-white) so white cards
+     and the white header clearly float above it. This is what gives the app its
+     layered, professional feel (Swiggy/Groww style grouped surfaces). The gradient
+     itself lives on ion-content in global.css for a gentle top-to-bottom depth. */
+  --anrix-app-bg: #e7e8ee;
+  --anrix-app-bg-2: #eef0f4;
+
+  /* ── Soft-amber hero surface ───────────────────────────────────────────────
+     Replaces the old charcoal/black "ink" hero cards app-wide (balance, KYC,
+     credit, plans, wallet, wage summary, etc). Warm light amber + dark ink text
+     + amber-strong figures, framed like every other card. No black surfaces. */
+  --anrix-hero-bg: linear-gradient(155deg, #fef2d2 0%, #fbe0a1 100%);
+  --anrix-hero-border: rgba(214, 158, 15, 0.42);
+  --anrix-hero-text: #1a1a1a;
+  --anrix-hero-muted: rgba(26, 26, 26, 0.60);
+  --anrix-hero-accent: #9a6a06;
+  --anrix-hero-chip: rgba(255, 255, 255, 0.58);
+  --anrix-hero-shadow: 0 12px 26px rgba(214, 158, 15, 0.22);
+
+  /* ── Metric-card tone palette ──────────────────────────────────────────────
+     Soft, professional pastels (Groww / Zepto / Zoho style). Each tone has:
+       -bg   soft pastel fill (icon chip + gentle card wash)
+       -fg   saturated ink for the icon / accent
+       -line hairline that frames the chip & card
+     Used by StatCard so every role dashboard gets colourful-but-calm KPI tiles.
+     Auto-swaps to translucent tints in dark mode below. */
+  --anrix-tone-blue-bg: #ecf3ff;   --anrix-tone-blue-fg: #2f6bed;   --anrix-tone-blue-line: #d8e6ff;
+  --anrix-tone-green-bg: #e7f7ef;  --anrix-tone-green-fg: #109c63;  --anrix-tone-green-line: #cfeede;
+  --anrix-tone-amber-bg: #fff2d6;  --anrix-tone-amber-fg: #a86d00;  --anrix-tone-amber-line: #ffe3a8;
+  --anrix-tone-violet-bg: #f1ecff; --anrix-tone-violet-fg: #7b45e6; --anrix-tone-violet-line: #e3d8ff;
+  --anrix-tone-rose-bg: #ffecf0;   --anrix-tone-rose-fg: #e0325a;   --anrix-tone-rose-line: #ffd6df;
+  --anrix-tone-teal-bg: #e2f6f3;   --anrix-tone-teal-fg: #0c9587;   --anrix-tone-teal-line: #caeee9;
+  --anrix-tone-slate-bg: #eef1f7;  --anrix-tone-slate-fg: #4a5468;  --anrix-tone-slate-line: #dfe4ee;
+
+  /* ---- Ionic theming variables ---- */
+  --ion-color-primary: var(--anrix-primary);
+  --ion-color-primary-shade: var(--anrix-primary-strong);
+  --ion-color-primary-tint: #ffcb3d;
+  --ion-color-primary-contrast: #1a1a1a;
+
+  --ion-color-secondary: var(--anrix-primary);
+  --ion-color-success: var(--anrix-success);
+  --ion-color-warning: var(--anrix-warning);
+  --ion-color-danger: var(--anrix-danger);
+
+  --ion-background-color: var(--anrix-bg);
+  --ion-text-color: var(--anrix-text-strong);
+  --ion-card-background: var(--anrix-surface);
+  --ion-item-background: var(--anrix-surface);
+  --ion-toolbar-background: var(--anrix-surface);
+  --ion-tab-bar-background: var(--anrix-surface);
+  --ion-border-color: var(--anrix-border);
+
+  --ion-font-family: 'Plus Jakarta Sans', 'Noto Sans', 'Noto Sans Devanagari', 'Noto Sans Telugu',
+    'Noto Sans Tamil', system-ui, -apple-system, sans-serif;
+}
+
+html.dark {
+  /* Gold accent, kept deep enough that buttons hardcoding white text stay legible. */
+  --anrix-primary: #f5b301;
+  --anrix-primary-strong: #ffcb3d;
+  --anrix-primary-soft: rgba(245, 179, 1, 0.18);
+  --anrix-accent: #ffcb3d;
+  --anrix-on-primary: #1a1a1a;
+
+  --anrix-ink: #141414;
+  --anrix-on-ink: #ffffff;
+
+  --anrix-success: #2bbd84;
+  --anrix-warning: #e6a730;
+  --anrix-danger: #ff5d52;
+  --anrix-info: #8a93a0;
+
+  --anrix-bg: #121317;
+  --anrix-surface: #191b21;
+  --anrix-surface-2: #21242b;
+  --anrix-border: #2b2f38;
+  --anrix-border-strong: #353a44;
+  --anrix-text-strong: #f3f4f6;
+  --anrix-text: #c0c5cd;
+  --anrix-text-muted: #828893;
+
+  --anrix-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --anrix-shadow-2: 0 6px 16px rgba(0, 0, 0, 0.48);
+  --anrix-shadow-3: 0 16px 40px rgba(0, 0, 0, 0.56);
+
+  --anrix-glass-bg: rgba(255, 255, 255, 0.06);
+  --anrix-glass-border: rgba(255, 255, 255, 0.1);
+  --anrix-ring-primary: 0 0 0 4px rgba(245, 179, 1, 0.24);
+
+  --anrix-header-bg: #141414;
+  --anrix-header-gradient: #141414;
+  --anrix-surface-glass: var(--anrix-surface);
+  --anrix-border-glass: var(--anrix-border);
+  --anrix-nav-bg: var(--anrix-surface);
+  --anrix-nav-border: var(--anrix-border);
+  --anrix-app-bg: #0e0f13;
+  --anrix-app-bg-2: #16171d;
+
+  /* Soft-amber hero — warm dark-amber (never pure black) + light warm text. */
+  --anrix-hero-bg: linear-gradient(155deg, #2c2410 0%, #201907 100%);
+  --anrix-hero-border: rgba(245, 179, 1, 0.30);
+  --anrix-hero-text: #f7eccf;
+  --anrix-hero-muted: rgba(247, 236, 207, 0.62);
+  --anrix-hero-accent: #ffcb3d;
+  --anrix-hero-chip: rgba(255, 255, 255, 0.12);
+  --anrix-hero-shadow: 0 12px 26px rgba(0, 0, 0, 0.45);
+
+  /* Tone palette — translucent tints over the dark surface + brighter ink. */
+  --anrix-tone-blue-bg: rgba(74, 129, 245, 0.16);   --anrix-tone-blue-fg: #83abff;   --anrix-tone-blue-line: rgba(74, 129, 245, 0.30);
+  --anrix-tone-green-bg: rgba(31, 191, 133, 0.16);  --anrix-tone-green-fg: #46d6a0;  --anrix-tone-green-line: rgba(31, 191, 133, 0.30);
+  --anrix-tone-amber-bg: rgba(245, 179, 1, 0.18);   --anrix-tone-amber-fg: #ffcb3d;  --anrix-tone-amber-line: rgba(245, 179, 1, 0.32);
+  --anrix-tone-violet-bg: rgba(139, 92, 246, 0.18); --anrix-tone-violet-fg: #b79bff; --anrix-tone-violet-line: rgba(139, 92, 246, 0.32);
+  --anrix-tone-rose-bg: rgba(244, 63, 94, 0.16);    --anrix-tone-rose-fg: #ff7d97;   --anrix-tone-rose-line: rgba(244, 63, 94, 0.30);
+  --anrix-tone-teal-bg: rgba(20, 184, 166, 0.16);   --anrix-tone-teal-fg: #37cbba;   --anrix-tone-teal-line: rgba(20, 184, 166, 0.30);
+  --anrix-tone-slate-bg: rgba(148, 163, 184, 0.16); --anrix-tone-slate-fg: #aab4c4;  --anrix-tone-slate-line: rgba(148, 163, 184, 0.28);
+
+  --ion-color-primary-contrast: #16181d;
+  --ion-background-color: var(--anrix-bg);
+  --ion-text-color: var(--anrix-text-strong);
+  --ion-card-background: var(--anrix-surface);
+  --ion-item-background: var(--anrix-surface);
+  --ion-toolbar-background: var(--anrix-surface);
+  --ion-tab-bar-background: var(--anrix-surface);
+  --ion-border-color: var(--anrix-border);
+}
