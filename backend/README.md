@@ -21,6 +21,8 @@ npm run dev                   # start on http://localhost:4300
 
 One-shot: `npm run keys && createdb nirmaan && npm run db:setup` (setup = migrate + seed).
 
+> **Full table catalog:** [`db/TABLES.md`](./db/TABLES.md) lists all 79 database tables by domain. `db:migrate` creates every one of them from `db/migrations/`.
+
 ### Try it (test users, dev OTP is fixed = `1234`)
 
 Every role has **2 test users**. Phone = `9` + roleId(3) + n(3) + `0000`
